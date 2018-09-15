@@ -1,0 +1,269 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{blue}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+% Title
+\title{ECON 6130 - Problem Set \# 3}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+% Usefuls Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\E{\mathbb{E}}
+\newcommand\R{\mathbb{R}}
+\newcommand\F{\mathcal{F}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\st{\text{such that }}
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{#1\right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\subsection*{1.}
+Maximization problems:
+\begin{enumerate}[(i)]
+	\item Households.
+	\begin{align*}
+	 \max_{\cbra{c_t,k_{t+1}}_{t=0}^\infty} &\sum_{t=0}^{\infty}\beta^t u(c_t,s_t)\\
+	 &\st\\
+	 & c_t+k_{t+1}-(1-\delta)k_t \leq w_tn_t+r_tk_t\\
+	 & c_t,k_{t+1}\geq 0, n_t=1\\
+	 & n_t= 1\\
+	 & s_t,k_0 \text{ given}
+	\end{align*}
+	\item Firms.
+	\begin{align*}
+	\max_{\cbra{k_t,n_{t}}_{t=0}^\infty} & f(k_t,n_t)-w_tn_t-r_tk_t\\
+	&\st\\
+	& n_t,k_{t}\geq 0\\
+	& k_0 \text{ given}
+	\end{align*}
+\end{enumerate}
+Note that the representative consumer does not understand its own impact on $s_t$, therefore, in the household problem, $s_t$ is taken as given even though $s_t=\theta f(k_t,n_t)$. 
+
+A sequential markets equilibrium is a sequence of prices $\cbra{w_t,r_{t}}_{t=0}^\infty$, allocations for the representative household $\cbra{c_t,k^s_{t+1}}_{t=0}^\infty$ and allocations for the representative  $\cbra{n^d_t,k^d_{t}}_{t=0}^\infty$ such that
+\begin{enumerate}[(i)]
+	\item Given $k_0$ and $\cbra{w_t,r_{t}}_{t=0}^\infty$, allocations for the representative household $\cbra{c_t,k^s_{t+1}}_{t=0}^\infty$ solves the household problem.
+	\item For each $t\geq 0$, given $(w_t,r_t)$ the firm allocation $(n^d_t,k_t^d)$ solves the firms' maximization problem.
+	\item Markets clears.
+	\begin{align*}
+		n_t^d&=1\\
+		k_t^d&=k_t^s\\
+		f(k_t^d,n_t^d) & = c_t+k^s_{t+1}-(1-\delta)k^s_t
+	\end{align*}
+\end{enumerate}
+
+
+\subsection*{2.}
+
+Firms FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial n_t} &= \frac{\partial f(k_t,n_t)}{\partial n_t}-w_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial k_t} &= \frac{\partial f(k_t,n_t)}{\partial k_t}-r_t = 0
+\end{align*}
+
+Euler theorem and constant return to scale, we have $f(k_t,n_t)=\frac{\partial f(k_t,n_t)}{\partial n_t}n_t+ \frac{\partial f(k_t,n_t)}{\partial k_t}k_t$. Accordingly, the households problem becomes
+\begin{align*}
+\max_{\cbra{c_t,k_{t+1}}_{t=0}^\infty} &\sum_{t=0}^{\infty}\beta^t u(c_t,s_t)\\
+&\st\\
+& c_t+k_{t+1}-(1-\delta)k_t = f(k_t,1)\\
+& c_t,k_{t+1}\geq 0\\
+& s_t,k_0 \text{ given}
+\end{align*}
+
+We set up the following Lagrangian to solve the maximization problem.
+\[
+\mathcal{L} = \sum_{t=0}^{\infty}\beta^t u(c_t,s_t) + \lambda_t \left(  f(k_t,1)- c_t-k_{t+1}+(1-\delta)k_t \right) 
+\]
+
+Houshold FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial c_t}& = \beta^tu_c(c_t,s_t) -\lambda_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial k_{t+1}} &= \lambda_{t+1} \left( f_k(k_{t+1},1) + (1-\delta)\right) - \lambda_t = 0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= f(k_t,1)- c_t-k_{t+1}+(1-\delta)k_t = 0
+\end{align*}
+
+Combining these equations, we get
+\[
+u_c(c_t,s_t)=\beta u_c(c_{t+1},s_{t+1})\left[f_k(k_{t+1},1) + (1-\delta) \right]  
+\]
+or
+\[
+\frac{u_c(f(k_{t},1)-k_{t+1}+(1-\delta)k_{t},\theta f_k(k_{t},1))}{u_c(f(k_{t+1},1)-k_{t+2}+(1-\delta)k_{t+1},\theta f_k(k_{t+1},1))}=\beta \left[f_k(k_{t+1},1) + (1-\delta) \right]  
+\]
+
+In general, the ratio of $u_c(c_t,s_t)$ and $u_c(c_{t+1},s_{t+1})$ will not be equal to one and will depend on $\theta$. Therefore, while the household does not account for its impacts on $s_t$, the path of $k_t$ will depend on $\theta$ since marginal utility relies on $s_t=\theta f_k(k_t,1)$.
+
+For the steady state, we have $c_t=c_{t+1}=c$ and $k_t=k_{t+1}=k$ which implies that $s_t=s =\theta f(k,1)$ is constant. Then,
+\begin{align*}
+	u_c(c,s) & =\beta u_c(c,s)\left[f_k(k,1) + (1-\delta) \right]  \\
+	\frac{1}{\beta} &= f_k(k,1) + (1-\delta)\\
+	\Rightarrow f_k(k,1) &= 1 + \frac{1}{\beta} -\delta
+\end{align*}
+i.e. $k$ does not depend on $\theta$.
+
+Note that the problem is designed in such a way that $\theta$ is not part of the information set for the representative consumer. Therefore, since the households find a steady state that maximizes their utility given any $s_t$ and as such any $\theta$, $k$ will not depend on $\theta$.
+
+Hence, while the steady state is independent of $\theta$, the law of motion of $s_t$ is not. This will impact marginal utility and as such how the representative will adjust $k_t$ to maximize utility and reach the steady state. Thus, even if the representative agent does not understand its impact on $s_t$, it will still be reflected on how $k_t$ changes, but not on the steady state per se.
+
+\subsection*{3.}
+
+Social planner maximization problem:
+	\begin{align*}
+\max_{\cbra{c_t,k_{t+1}}_{t=0}^\infty} &\sum_{t=0}^{\infty}\beta^t u(c_t,s_t)\\
+&\st\\
+& c_t+k_{t+1}-(1-\delta)k_t = f(k_t,n_t)\\
+& s_t=\theta f(k_t,n_t)\\
+& c_t,k_{t+1}\geq 0, n_t=1\\
+& k_0 \text{ given}
+\end{align*}
+
+We set up the following Lagrangian to solve the maximization problem.
+\[
+\mathcal{L} = \sum_{t=0}^{\infty}\beta^t u(c_t,s_t) + \lambda_t \left(  f(k_t,1)- c_t-k_{t+1}+(1-\delta)k_t \right) + \mu_t \left( \theta f(k_t,1) - s_t \right)
+\]
+
+FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial c_t}& = \beta^tu_c(c_t,s_t) -\lambda_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial s_t}& = \beta^tu_s(c_t,s_t) -\mu_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial k_{t+1}} &= \lambda_{t+1} \left( f_k(k_{t+1},1) + (1-\delta)\right) +\mu_{t+1}\theta f_k(k_{t+1},1) - \lambda_t = 0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= f(k_t,1)- c_t-k_{t+1}+(1-\delta)k_t = 0\\
+\frac{\partial \mathcal{L}}{\partial \mu_t} &= f(k_t,1) - s_t = 0
+\end{align*}
+
+Combining these equations, we get
+\[
+u_c(c_t,s_t)=\beta \left\lbrace u_c(c_{t+1},s_{t+1})\left[f_k(k_{t+1},1) + (1-\delta) \right]   + u_s(c_{t+1},s_{t+1})\theta f_k(k_{t+1},1)\right\rbrace 
+\]
+
+Therefore at the steady state,
+\begin{align*}
+u_c(c,s) & =\beta \left\lbrace u_c(c,s)\left[f_k(k,1) + (1-\delta) \right]   + u_s(c,s)\theta f_k(k,1)\right\rbrace  \\
+\frac{1}{\beta} &= f_k(k,1)\left[ 1+\theta\frac{u_s(c,s)}{u_c(c,s)}\right]  + (1-\delta)\\
+\Rightarrow f_k(k,1) &= \left[ 1 + \frac{1}{\beta} -\delta\right] 
+\cdot \left[ 1+\theta\frac{u_s(c,s)}{u_c(c,s)}\right]^{-1}\\
+\end{align*}
+
+Thus, the solution for the social planner problem and the sequential market equilibrium coincide if and only if
+\[
+\begin{split}
+ 1+\theta\frac{u_s(c,s)}{u_c(c,s)} & = 1 \\
+ \theta\frac{u_s(c,s)}{u_c(c,s)} & = 0 \\
+\end{split}
+\] 
+Hence, both problems yield the same steady state if either $\theta =0$ (i.e. no pollution) or $u_s(c,s) =0$ (i.e. no marginal utility for pollution).
+
+\subsection*{4.}
+
+Recall the sequential market equilibrium problem. We can modify the household problem by taxing both wages and capital gains at a rate $\tau$. In order to keep the budget-neutral, we will transfer tax revenues to the consumer in the form of a lump-sum transfer $T_t$ where
+\[
+(1-\tau)w_tn_t + (1-\tau)r_tk_t = (1-\tau)f(k_t,n_t)\equiv T_t
+\]
+
+Accordingly, the households problem becomes
+\begin{align*}
+\max_{\cbra{c_t,k_{t+1}}_{t=0}^\infty} &\sum_{t=0}^{\infty}\beta^t u(c_t,s_t)\\
+&\st\\
+& c_t+k_{t+1}-(1-\delta)k_t = (1-\tau)f(k_t,n_t)+T_t\\
+& c_t,k_{t+1}\geq 0\\
+& T_t,s_t,k_0 \text{ given}
+\end{align*}
+Note that we assume that the representative agent act as if $T_t$ is simply given. If the agent understood its impact on $T_t$, we would get the exact same equilibrium as before since we are dealing with a budget-neutral tax.
+
+We set up the following Lagrangian to solve the maximization problem.
+\[
+\mathcal{L} = \sum_{t=0}^{\infty}\beta^t u(c_t,s_t) + \lambda_t \left(  (1-\tau)f(k_t,1)+T_t- c_t-k_{t+1}+(1-\delta)k_t \right) 
+\]
+
+Houshold FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}}{\partial c_t}& = \beta^tu_c(c_t,s_t) -\lambda_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial k_{t+1}} &= \lambda_{t+1} \left[ (1-\tau)f_k(k_{t+1},1) + (1-\delta)\right] - \lambda_t = 0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= (1-\tau)f(k_t,1)+T_t- c_t-k_{t+1}+(1-\delta)k_t = 0
+\end{align*}
+
+Combining these equations, we get
+\[
+u_c(c_t,s_t)=\beta u_c(c_{t+1},s_{t+1})\left[(1-\tau)f_k(k_{t+1},1) + (1-\delta) \right]  
+\]
+
+Therefore at the steady state,
+\begin{align*}
+u_c(c,s) & =\beta u_c(c,s)\left[(1-\tau)f_k(k,1) + (1-\delta) \right]   \\
+\frac{1}{\beta} &= (1-\tau)f_k(k,1) + (1-\delta)\\
+\Rightarrow f_k(k,1) &= \left[ 1 + \frac{1}{\beta} -\delta\right] 
+\cdot \left[ 1-\tau \right]^{-1}\\
+\end{align*}
+
+Hence, we obtain the exact same solution as the social planner problem if we set $\tau$ such that 
+\[
+\tau = -\theta\frac{u_s(c,s)}{u_c(c,s)}
+\]
+
+\section*{Problem 2}
+
+\begin{proof}
+\begin{align*}
+	\rho(T^nv_0,v) & =  \rho(T^{n}v_0,Tv)  & \text{(By definition of fixed point)} \\
+	 & \leq \rho(T^{n}v_0,T^{n+1}v_0) +  \rho(T^{n+1}v_0,Tv)   & \text{(By triangle inequality)} \\
+	 & \leq \rho(T^{n}v_0,T^{n+1}v_0) +  \beta \rho(T^{n}v_0,v) & \text{(By definition of contraction mapping)}\\
+	 (1-\beta )\rho(T^nv_0,v)& \leq \rho(T^{n} v_0,T^{n+1}v_0)   \\
+	\Rightarrow \rho(T^nv_0,v)& \leq \frac{1}{1-\beta} \rho(T^n v_0,T^{n+1}v_0)
+\end{align*}
+
+\end{proof}
+\end{document}

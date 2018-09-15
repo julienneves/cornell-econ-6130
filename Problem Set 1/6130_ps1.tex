@@ -1,0 +1,535 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+
+% Title
+\title{ECON 6130 - Problem Set \# 1}
+\date{\today}
+
+% Use these for theorems, lemmas, proofs, etc.
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+% Usefuls Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\E{\mathbb{E}}
+\newcommand\R{\mathbb{R}}
+\newcommand\F{\mathcal{F}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\st{\text{ such that }}
+
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{#1\right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\subsection*{1.}
+
+Bob's maximization problem.
+\[
+\begin{split}
+\underset{\cbra{c_t},\cbra{b_t}}{\max} &\sum_{t=0}^{\infty}\beta^t u(c_t) \\
+\st c_t+b_t &\leq  e_t+R_tb_{t-1}\\
+b_t &\geq 0\\
+c_t &\geq 0\\
+b_{-1} &\text{ given}\\
+e_t &\text{ given, } R_t \text{ given}
+\end{split}
+\]
+with $R_t=1+r_t$, $\beta \in (0,1)$, $u'(c)>0$, $u''<0$, $\lim_{c\to 0 } u'(c)=\infty$ and $\lim_{c\to \infty } u'(c)=0$ 
+
+\begin{enumerate}[(i)]
+	\item $\beta$. The discounting factor for consumption in the next period. Since $\beta \in (0,1)$, this implies that Bob prefers to consume coconuts today instead of tomorrow.
+	\item $R_t=1+r_t$. The growth rate of coconuts seed planted in the previous period.
+	\item $c_t$. Consumption of coconuts at time $t$
+	\item $b_t$. Seeds planted at time $t$
+	\item $e_t=(e_0,0,...,0)$. Endowment of coconuts. Note that Bob is only endowed coconuts at time $t=0$.
+\end{enumerate}
+
+Hence, $c_t+b_t \leq  e_t+R_tb_{t-1}$ states that at the beginning of period $t$ there is $e_t+R_tb_{t-1}$ coconuts and Bob can decide to consume them in the current period, plant them for the next one, or throw them in the sea.
+
+Finally, $b_t \geq 0$ and $c_t \geq 0$ simply impose that Bob can't borrow coconuts or consume a negative amounts of coconuts.
+\subsection*{2.}
+
+We set up the following Lagrangian to solve Bob's maximization problem.
+\[
+\mathcal{L} = \sum_{t=0}^{\infty}\left( \beta^t u(c_t)  + \lambda_t (e_t+R_tb_{t-1}-c_t-b_t)\right) 
+\]
+
+FOCs:
+\[
+\begin{split}
+\frac{\partial \mathcal{L}}{\partial c_t} &= \beta^t u'(c_t)-\lambda_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial b_t} &= -\lambda_t + \lambda_{t+1}R_{t+1} = 0 \\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= e_t+R_tb_{t-1}-c_t-b_t = 0
+\end{split}
+\]
+
+We can combine the FOCs to get the following Euler equation:
+\[
+\boxed{
+u'(c_t)=R_{t+1}\beta u'(c_{t+1})
+}
+\]
+
+Note that since $u(\cdot)$ is a concave function ($u'(c)>0$, $u''<0$), the solution to the Lagrangian is an interior point and the borrowing constraint $b_t \geq 0$ is not bounding in this problem. If $b_t \geq 0$, was bounding, Bob would not smooth consumption at all and would in fact eat all his coconuts at $t=0$ and starve the next period.
+
+Now let's assume that Bob could actually borrow coconuts (i.e. $b_t < 0$ for some $t=0,...$). Since $e_t+R_tb_{t-1}$ is the amount of coconuts available at time $t$, having  $b_t < 0$ for some $t=0,...$ would imply that next period the amount of coconuts available would be $R_{t+1}b_{t}<0$. This means that to keep consuming a positive quantity, Bob would need to borrow at least $R_{t+1}b_{t}$. It holds recursively that Bob would keep on borrowing bigger and bigger quantities of coconuts without ever being able to repay its debt. Therefore, given the FOCs $u'(c_t)=R_{t+1}\beta u'(c_{t+1})$, it is not optimal for Bob to ever borrow.
+
+\subsection*{3.}
+
+\begin{enumerate}
+	\item $R_{t+1}<\frac{1}{\beta}.$
+	
+	This implies that $u'(c_t)<u'(c_{t+1})$. Since $u'(c)$ is strictly decreasing, we get that $c_t>c_{t+1}$. Then for $c$ to be constant $\Rightarrow R_{t+1}\not>\frac{1}{\beta}.$
+	\item $R_{t+1}>\frac{1}{\beta}.$
+	
+	This implies that $u'(c_t)>u'(c_{t+1})$. Since $u'(c)$ is strictly decreasing, we get that $c_t<c_{t+1}$. Then for $c$ to be constant $\Rightarrow R_{t+1}\not<\frac{1}{\beta}.$
+	
+	\item $R_{t+1}=\frac{1}{\beta}.$
+	
+	This implies that $u'(c_t)=u'(c_{t+1})$. Since $u'(c)$ is strictly decreasing, we get that $c_t=c_{t+1}$ (if not we would get either $c_t>c_{t+1} \Rightarrow u'(c_t)<u'(c_{t+1})$ or $c_t<c_{t+1} \Rightarrow u'(c_t)>u'(c_{t+1})$).
+\end{enumerate}
+
+Hence, for $c$ to be constant we need $R_{t+1}=\frac{1}{\beta}$.
+\subsection*{4.}
+
+As shown previously, for $c=c_t=c_{t+1}$, we need $\frac{1}{\beta}=R_t=R_{t+1}=R$
+
+We can rewrite our budget constraint in the following way
+\[
+b_{t-1}=\frac{1}{R}(c+b_t-e_t)
+\]
+and iterate this to get
+\[
+b_{-1}=\frac{c-e_0}{R}+\frac{b_0}{R}= \frac{c-e_0}{R} + \frac{c-e_1}{R^2} +...+\frac{c-e_{n}}{R^{n+1}} +\frac{b_n}{R^{n+1}}
+\]
+
+We know that $b_{-1}=0$ and $e_t=(e_0,0,...,0)$. This implies that 
+\[
+\begin{split}
+\frac{e_0}{r} & = \sum_{i=0}^n\frac{c}{R^{i+1}} +\frac{b_n}{R^{n+1}}\\
+e_0& = c \sum_{i=0}^n\frac{1}{R^{i}} +\frac{b_n}{R^{n}}
+\end{split}
+\]
+
+Taking the limit as $n\to \infty$,
+\[
+\begin{split}
+e_0& = \lim_{n\to \infty } c \sum_{i=0}^n\frac{1}{R^{i}} + \underbrace{\lim_{n\to \infty } \frac{b_n}{R^{n}}}_{0 \text{if savings does not grow faster than R}}\\
+ & = \frac{c}{1-\frac{1}{R}}\\
+\Rightarrow c & = (1-\frac{1}{R})e_0 = \underbrace{(1-\beta)}_{\text{Propensity to consume}} \cdot \underbrace{e_0}_{\text{Total endowment}} 
+\end{split}
+\]
+
+
+\subsection*{5.}
+
+\[
+\lim_{r\to \infty } c  = \lim_{R\to \infty } (1-\frac{1}{R})e_0 = e_0
+\]
+
+Hence, as $r\to \infty$, Bob consumes the totality of the coconuts he arrived with (i.e. $c=e_0$) which is finite. 
+
+If we let Bob consume a bit less than $e_0$ (i.e. $c_0=e_0-\epsilon$), then next period Bob would have an infinity of coconuts which results in Bob consuming an infinity of coconuts from here on out (i.e. $c_t=\infty$ for $t=1,...$). This contradicts the fact that we have imposed that $c$ is constant. 
+
+Moreover, if $c_0=e_0$ there is nothing to save for tomorrow, hence $c_t=0$ for $t=1,...$ which again contradicts $c$ being constant. 
+
+Thus, to have a more sensible result, we could relax the assumption that make consumption constant (i.e. $R_{t}=R_{t+1}=\frac{1}{\beta}$) and Bob could take advantage of this miraculously fertile island.
+
+\section*{Problem 2}
+\subsection*{1.}
+
+\[
+\begin{split}
+\lim_{\sigma\to 1 } \frac{c_t^{1-\sigma}-1}{1-\sigma} &= \lim_{\sigma\to 1 } \frac{e^{\ln(c_t^{1-\sigma})}-1}{1-\sigma} \\
+&= \lim_{\sigma\to 1 } \frac{e^{(1-\sigma)\ln(c_t)}-1}{1-\sigma} \\
+&\overbrace{=}^{\text{Hôpital's Rule}} \lim_{\sigma\to 1 } \frac{-\ln(c_t)e^{(1-\sigma)\ln(c_t)}}{-1} = \ln(c_t)
+\end{split}
+\]
+
+\subsection*{2.}
+We have the following
+\[
+U'(c_t) = \frac{(1-\sigma)c_t^{-\sigma}}{1-\sigma} = c_t^{-\sigma}
+\]
+and
+\[
+U''(c_t) = -\sigma c_t^{-\sigma-1}
+\]
+
+Combining both equations yields
+\[
+\frac{-c_tU''(c_t)}{U'(c_t)}= \frac{-c_t(-\sigma c_t^{-\sigma-1})}{c_t^{-\sigma}} = \frac{\sigma c_t^{-\sigma}}{c_t^{-\sigma}} =\sigma
+\]
+
+
+\subsection*{3.}
+Recall that
+\[
+U'(c_t) = c_t^{-\sigma} \Rightarrow U'(c_t)^{-\frac{1}{\sigma}} = c_t
+\]
+
+Hence,
+\[
+\begin{split}
+\ln\left(\frac{c_{t+1}}{c_t}\right) & = \ln\left(\frac{U'(c_{t+1})^{-\frac{1}{\sigma}}}{U'(c_{t})^{-\frac{1}{\sigma}}}\right)\\
+& = -\frac{1}{\sigma} \ln\left(\frac{U'(c_{t+1})}{U'(c_{t})}\right)
+\end{split}
+\]
+
+Taking the partial derivative with respect to $\frac{U'(c_{t+1})}{U'(c_{t})}$ yields
+\[
+\frac{\partial \ln\left(\frac{c_{t+1}}{c_t}\right) }{\partial \ln\left(\frac{U'(c_{t+1})}{U'(c_{t})}\right)} = \frac{1}{\sigma}
+\]
+
+\subsection*{4.}
+
+Since $c_t\geq 0$, we get that for $c_t\neq 0$
+\[
+U'(c_t) = c_t^{-\sigma} >0
+\]
+Therefore, $U(c_t)$ is strictly increasing for $c_t> 0$.
+
+Again since $c_t\geq 0$, we get that for $c_t\neq 0$
+\[
+U''(c_t) = \underbrace{-\sigma }_{<0}\underbrace{ c_t^{-\sigma-1}}_{>0}<0
+\]
+Thus, $U(c_t)$ is strictly concave for $c_t> 0$.
+
+Finally, we check Inada's conditions, i.e.
+\[
+\begin{split}
+\lim_{c_t\to 0 } U'(c_t) & = \lim_{c_t\to 0 } c_t^{-\sigma}\\
+& = \lim_{c_t\to 0 }  \pa{\frac{1}{c_t}}^{\sigma} = \infty
+\end{split}
+\]
+and
+\[
+\begin{split}
+\lim_{c_t\to 0 } U'(c_t) & = \lim_{c_t\to 0 } c_t^{-\sigma}\\
+& = \lim_{c_t\to \infty }  \pa{\frac{1}{c_t}}^{\sigma} = 0
+\end{split}
+\]
+
+\subsection*{5.}
+Note that
+\[
+\frac{\partial u(c)}{\partial c_{t}} = \beta^t c_t^{-\sigma}
+\]
+
+This gives us that
+\[
+MRS(c_{t+s},c_t)=\frac{\frac{\partial u(c)}{\partial c_{t+s}}}{\frac{\partial u(c)}{\partial c_{t}}} = \frac{\beta^{t+s} c_{t+s}^{-\sigma}}{\beta^t c_t^{-\sigma}} =  \beta^s \left(\frac{c_t}{c_{t+s}}\right)^\sigma
+\]
+and
+\[
+MRS(\lambda c_{t+s},\lambda c_t)= \beta^s \left(\frac{\lambda c_t}{\lambda c_{t+s}}\right)^\sigma = \beta^s \left(\frac{c_t}{c_{t+s}}\right)^\sigma = MRS(c_{t+s},c_t)
+\]
+
+Hence, $u(c)$ is homothetic.
+
+\subsection*{6.}
+
+Consumer's optimization problem.
+\[
+\begin{split}
+\underset{\cbra{c_t}}{\max} &\sum_{t=0}^{\infty}\beta^t U(c_t)\\
+\st & \sum_{t=0}^{\infty} p_t c_t \leq \lambda y\\
+c_t &\geq 0\\
+p_t &\text{ given, } \lambda \text{ given, } y \text{ given}
+\end{split}
+\]
+with $\beta \in (0,1)$ and $\sum_{t=0}^{\infty}\beta^t U(c_t)=u(c)$.
+
+We set up the following Lagrangian to solve the consumer's optimization problem.
+\[
+\mathcal{L} = 
+\sum_{t=0}^{\infty} \beta^t \left( \frac{c_t^{1-
+\sigma}-1}{1-\sigma} \right)  + \mu( \lambda y-\sum_{t=0}^{\infty} p_t c_t)
+\]
+
+FOCs:
+\[
+\begin{split}
+\frac{\partial \mathcal{L}}{\partial c_t} &= \beta^t c_t^{-\sigma}-\mu p_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial \mu} &= \lambda y- \sum_{t=0}^{\infty} p_t c_t = 0
+\end{split}
+\]
+
+We can combine the FOCs to get the following equations:
+\[
+\boxed{
+	\beta^t \frac{c_t^{-\sigma}}{p_t} = \beta^s \frac{c_s^{-\sigma}}{p_s}
+}
+\]
+
+Without loss of generality, let $p_0=1$. Then, we get
+
+\[
+\begin{split}
+\beta^t \frac{c_t^{-\sigma}}{p_t} & = \beta^0 \frac{c_0^{-\sigma}}{p_0}\\
+c_t^\sigma & = \frac{\beta^t}{p_t} c_0^\sigma \\
+c_t & = c_0 \underbrace{\left( \frac{\beta^t}{p_t}\right) ^\frac{1}{\sigma}}_{\theta_t}
+\end{split}
+\]
+
+Then,
+\[
+\begin{split}
+\sum_{t=0}^{\infty} p_t c_t & = \lambda y \\
+\sum_{t=0}^{\infty} p_t c_0 \theta_t & = \lambda y \\
+c_0 \sum_{t=0}^{\infty} p_t \theta_t & = \lambda y \\
+c_0 & = \frac{\lambda y}{\sum_{t=0}^{\infty} p_t \theta_t} \  \\
+\end{split}
+\]
+and
+\[
+c_t = c_0 \cdot \theta_t = \frac{\lambda \theta_t y}{\sum_{t=0}^{\infty} p_t \theta_t} 
+\]
+
+Therefore, for $\lambda=1$, the solution is given by
+\[
+\hat{c_t} = \frac{ \theta_t y }{\sum_{t=0}^{\infty} p_t \theta_t} 
+\]
+
+For $\lambda\neq 1$, we have
+\[
+\tilde{c_t} = \lambda \frac{ \theta_ty}{\sum_{t=0}^{\infty} p_t \theta_t} = \lambda \hat{c_t}
+\]
+
+\subsection*{7.}
+
+We set up the following Lagrangian to solve the optimization problem.
+\[
+\mathcal{L} = u(c)  + \lambda_t (e_t+a_{t}-c_t-\frac{a_{t+1}}{1+r_{t+1}})
+\]
+
+FOCs
+\[
+\begin{split}
+\frac{\partial \mathcal{L}}{\partial c_t} &= \frac{\partial u(c)}{\partial c_t}-\lambda_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial a_{t+1}} &= -\frac{\lambda_t}{1+r_{t+1}} + \lambda_{t+1} = 0 \\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= e_t+a_{t}-c_t-\frac{a_{t+1}}{1+r_{t+1}} = 0
+\end{split}
+\]
+
+We can combine the FOCs to get the following Euler equation:
+\[
+\boxed{
+	MRS(c_{t+1},c_t)=\frac{\frac{\partial u(c)}{\partial c_{t+1}}}{\frac{\partial u(c)}{\partial c_{t}}}=\frac{1}{1+r_{t+1}}
+}
+\]
+and 
+\[
+\boxed{
+	MRS(c_{t+s},c_t)=\frac{\frac{\partial u(c)}{\partial c_{t+s}}}{\frac{\partial u(c)}{\partial c_{t}}}= \frac{\frac{\partial u(c)}{\partial c_{t+s}}}{\frac{\partial u(c)}{\partial c_{t+s-1}}} \cdot \frac{\frac{\partial u(c)}{\partial c_{t+s-1}}}{\frac{\partial u(c)}{\partial c_{t+s-2}}} \cdot ... \cdot  \frac{\frac{\partial u(c)}{\partial c_{t+1}}}{\frac{\partial u(c)}{\partial c_{t}}}= \prod_{i=t}^{t+s-1} \frac{1}{1+r_{i+1}}
+}
+\]
+\subsection*{8.}
+Recall that $\frac{1}{1+r_{t+1}} =MRS(c_{t+1},c_t)$ and thus
+\[
+\begin{split}
+	\frac{1}{1+r_{t+1}} & =\frac{\frac{\partial u(c)}{\partial c_{t+s}}}{\frac{\partial u(c)}{\partial c_{t}}} =MRS(c_{t+1},c_t)\\
+	& =  \beta \left(\frac{c_t}{c_{t+1}}\right)^\sigma\\
+	& = \beta \left(\frac{(1+g)^tc_0}{(1+g)^{t+1}c_0}\right)^\sigma \\
+	& = \beta (1+g)^{-\sigma} \\
+	\Rightarrow r & = \frac{1}{\beta}(1+g)^\sigma-1
+\end{split}
+\]
+
+\subsection*{9.}
+
+As shown in part 8, we have the following relation between $r$ and $g$
+\[
+r  = \frac{1}{\beta}(1+g)^\sigma-1
+\]
+
+Taking the derivative with respect to $g$ yields
+\[
+\begin{split}
+ \frac{\partial r}{\partial g}  =  \frac{\sigma}{\beta} (1+g)^{\sigma-1}>0
+\end{split}
+\]
+i.e. $g \uparrow \Rightarrow r \uparrow$.
+
+Note that by the chain rule, we have
+\[
+\begin{split}
+\frac{\partial \left( \frac{\partial r}{\partial g}\right) }{\partial \left( \frac{1}{\sigma}\right) } & = \frac{ \frac{\partial \left(\frac{\partial r}{\partial g}\right) }{\partial \sigma} }{ \frac{\partial\left(  \frac{1}{\sigma}\right) }{\partial \sigma} }\\
+& = \frac{\frac{1}{\beta} \left( (1+g)^{\sigma-1} + \sigma(1+g)^{\sigma-1}\ln(1+g) \right) }{-\frac{1}{\sigma^2}}\\
+& = - \frac{1}{\beta} \left( \sigma^2(1+g)^{\sigma-1} + \sigma^3(1+g)^{\sigma-1}\ln(1+g) \right)<0
+\end{split}
+\]
+i.e. $\frac{1}{\sigma} \uparrow \Rightarrow \frac{\partial r}{\partial g}  \downarrow$.
+
+Hence, as intertemporal elasticity of substitution (IES) increases, we get that the "sensitivity" of $r$ to $g$ decreases. The intuition behind this is that IES represents the willingness to substitute consumption over time, or simply a measure of the curvature of the utility function. Thus, the more IES increases, the more indifferent we become to swings in consumption over time. Now, the higher the growth rate $g$, the higher the swings in consumption between period. Hence while $r$ will increase to counter a higher $g$, it will do so less aggressively with an higher IES. 
+
+\subsection*{10.}
+
+Recall that
+\[
+MRS(c_{t},c_{t-1})=\frac{1}{1+r_{t}}
+\]
+
+If consumption is growing at a constant rate $g$, then $c_t=(1+g)^tc_0 $. Without loss of generality let $s>t$, then 
+
+\[\begin{split}
+MRS(c_{s},c_{s-1}) & = MRS((1+g)^s c_0,(1+g)^{s-1}c_0) \\
+&= MRS(\underbrace{(1+g)^{s-t}}_{\gamma}c_t,\underbrace{(1+g)^{s-t}}_{\gamma}c_{t-1}) \\
+& \underbrace{=}_{\text{Homothetic}} MRS(c_{t},c_{t-1})
+\end{split}
+\]
+
+Combining the previous with $MRS(c_{t},c_{t-1})=\frac{1}{1+r_{t}}$, we get that
+\[
+\begin{split}
+\frac{MRS(c_{t},c_{t-1})}{MRS(c_{s},c_{s-1})} & =\frac{1+r_{s}}{1+r_{t}} \\
+1 & =\frac{1+r_{s}}{1+r_{t}} \\
+\Rightarrow r_t& =r_s \quad \forall s,t
+\end{split}
+\]
+
+
+\subsection*{1.}
+
+\[
+U(c_t) = -e^{-\gamma c_t}
+\]
+
+Note that
+\[
+U'(c_t) = \gamma e^{-\gamma c_t}
+\]
+and
+\[
+U''(c_t) = -\gamma^2 e^{-\gamma c_t}
+\]
+
+Hence,
+\[
+-\frac{U''(c_t)}{U'(c_t)} = -\frac{-\gamma^2 e^{-\gamma c_t}}{\gamma e^{-\gamma c_t}} = \gamma
+\]
+and
+\[
+-\frac{c_t U''(c_t)}{U'(c_t)} =  -\frac{-c_t\gamma^2 e^{-\gamma c_t}}{\gamma e^{-\gamma c_t}} = c_t\gamma
+\]
+
+Taking the derivative yields
+\[
+\frac{\partial\left[ -\frac{c_t U''(c_t)}{U'(c_t)}\right] }{\partial c_t} = \gamma >0
+\]
+i.e. increasing relative risk aversion.
+
+\subsection*{2.}
+
+We have that
+\[
+\frac{\partial u(c)}{\partial c_{t}} = \beta^t e^{-\gamma c_t}
+\]
+
+Therefore,
+\[
+MRS(c_{t+s},c_t)=\frac{\frac{\partial u(c)}{\partial c_{t+s}}}{\frac{\partial u(c)}{\partial c_{t}}} = \frac{\beta^{t+s} e^{-\gamma c_{t+s}}}{\beta^t e^{-\gamma c_t}} =  \beta^s e^{-\gamma (c_{t+s}-c_t)}
+\]
+
+Thus,
+\[
+MRS(\lambda c_{t+s},\lambda c_t)= \beta^s e^{-\gamma (\lambda c_{t+s}- \lambda c_t)} = \beta^{s(1-\lambda)} (\beta^s  e^{-\gamma ( c_{t+s}-c_t)})^\lambda = \beta^{s(1-\lambda)} MRS(c_{t+s},c_t)^\lambda \neq MRS(c_{t+s},c_t) 
+\]
+i.e. for any $\lambda \neq 0$ we have $MRS(\lambda c_{t+s},\lambda c_t)\neq MRS(c_{t+s},c_t)$ which implies that the function is not homothetic.
+
+\subsection*{3.}
+
+Consumer's optimization problem.
+\[
+\begin{split}
+\underset{\cbra{c_t}}{\max} &\sum_{t=0}^{\infty}\beta^t U(c_t)\\
+\st & \sum_{t=0}^{\infty} p_t c_t \leq y\\
+c_t &\geq 0\\
+p_t &\text{ given, } y \text{ given}
+\end{split}
+\]
+with $\beta \in (0,1)$ and $\sum_{t=0}^{\infty}\beta^t U(c_t)=u(c)$.
+
+We set up the following Lagrangian to solve the optimization problem.
+\[
+\mathcal{L} = 
+\sum_{t=0}^{\infty}\beta^t -e^{-\gamma c_t}  + \mu( \lambda y-\sum_{t=0}^{\infty} p_t c_t)
+\]
+
+FOCs:
+\[
+\begin{split}
+\frac{\partial \mathcal{L}}{\partial c_t} &= \beta^t \gamma e^{-\gamma c_t}-\mu p_t = 0 \\
+\frac{\partial \mathcal{L}}{\partial \lambda_t} &= \lambda y- \sum_{t=0}^{\infty} p_t c_t = 0
+\end{split}
+\]
+
+We can combine the FOCs to get the following equations:
+\[
+	\beta^t \frac{\gamma e^{-\gamma c_t}}{p_t} = \beta^s \frac{\gamma e^{-\gamma c_s}}{p_s}
+\]
+
+Without loss of generality, let $p_0=1$. Then, we get
+
+\[
+\begin{split}
+\beta^t \frac{\gamma e^{-\gamma c_t}}{p_t} & = \beta^0 \frac{\gamma e^{-\gamma c_0}}{p_0}\\
+e^{\gamma c_t} & = \frac{\beta^t}{p_t} e^{\gamma c_0} \\
+\gamma c_t & = \ln{\left( \frac{\beta^t}{p_t}\right) } +\gamma c_0 \\
+c_t & = c_0 + \underbrace{\frac{1}{\gamma}\ln{\left( \frac{\beta^t}{p_t}\right) }}_{\theta_t}
+\end{split}
+\]
+
+Then,
+\[
+\begin{split}
+\sum_{t=0}^{\infty} p_t c_t & = \lambda y \\
+\sum_{t=0}^{\infty} p_t \left( c_0 +\theta_t\right)  & = \lambda y \\
+c_0 \sum_{t=0}^{\infty} p_t  + \sum_{t=0}^{\infty} p_t \theta_t & = \lambda y \\
+c_0 & = \frac{\lambda y - \sum_{t=0}^{\infty} p_t \theta_t}{\sum_{t=0}^{\infty} p_t}
+\end{split}
+\]
+and
+\[
+c_t = c_0 + \theta_t = \frac{\lambda y - \sum_{t=0}^{\infty} p_t \theta_t}{\sum_{t=0}^{\infty} p_t} + \theta_t 
+\]
+
+Therefore, for $\lambda=1$,
+\[
+\hat{c_t} = \frac{y - \sum_{t=0}^{\infty} p_t \theta_t}{\sum_{t=0}^{\infty} p_t} + \theta_t 
+\]
+for $\lambda\neq 1$
+\[
+\tilde{c_t} = \frac{(\lambda-1)y}{\sum_{t=0}^{\infty} p_t} + \frac{y - \sum_{t=0}^{\infty} p_t \theta_t}{\sum_{t=0}^{\infty} p_t} + \theta_t  = \frac{(\lambda-1)y}{\sum_{t=0}^{\infty} p_t} + \hat{c_t}
+\]
+
+\end{document}

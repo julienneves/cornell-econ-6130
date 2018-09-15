@@ -1,0 +1,229 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{blue}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+% Title
+\title{ECON 6130 - Problem Set \# 6}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+% Usefuls Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\E{\mathbb{E}}
+\newcommand\R{\mathbb{R}}
+\newcommand\F{\mathcal{F}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\st{\text{ such that }}
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{#1\right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\begin{enumerate}[(1)]
+	
+	\item
+Given $m$ an Arrow-Debreu equilibrium is an allocation $\hat{c}_1^0$, $\cbra{\hat{c}_t^t, \hat{c}_{t+1}^t}_{t=1}^\infty$ and prices $\cbra{p_t}_{t=1}^\infty$ such that
+
+\begin{enumerate}[(i)]
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_t^t, \hat{c}_{t+1}^t)$ solves
+	\begin{align*}
+		& \max_{({c}_t^t, {c}_{t+1}^t)} (\log{c}_t^t+ \log{c}_{t+1}^t)\\
+		& \st p_t{c}_t^t +p_{t+1}{c}_{t+1}^t \leq p_tw_1 +p_{t+1}w_2
+	\end{align*}
+	
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_1^0)$ solves
+	\begin{align*}
+	& \max_{{c}_1^0} \log{c}_1^0\\
+	& \st p_1{c}_1^0  \leq p_1w_2 +m
+	\end{align*}
+	
+	\item For all $t\geq 1$ markets clear
+	\[
+	\hat{c}_t^{t-1}+ \hat{c}_{t+1}^t = e_t^{t-1}+e_t^t
+	\]
+\end{enumerate}
+
+\item
+Given $m$, a sequential market equilibrium is an allocation $\hat{c}_1^0$, $\cbra{\hat{c}_t^t, \hat{c}_{t+1}^t}_{t=1}^\infty$ and prices $\cbra{r_t}_{t=1}^\infty$ such that
+
+\begin{enumerate}[(i)]
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_t^t, \hat{c}_{t+1}^t)$ solves
+	\begin{align*}
+	& \max_{({c}_t^t, {c}_{t+1}^t)} (\log{c}_t^t+ \log{c}_{t+1}^t)\\
+	& \st {c}_t^t + s_t^t\leq {e}_{t}^t\\
+	&  {c}_{t+1}^t \leq {e}_{t+1}^t + (1+r_{t+1})s_t^t
+	\end{align*}
+	
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_1^0)$ solves
+	\begin{align*}
+	& \max_{{c}_1^0} \log{c}_1^0\\
+	& \st {c}_1^0  \leq w_2 +(1+r_1)m
+	\end{align*}
+	
+	\item For all $t\geq 1$ markets clear
+	\[
+	\hat{c}_t^{t-1}+ \hat{c}_{t}^t = e_t^{t-1}+e_t^t
+	\]
+\end{enumerate}
+
+\item
+
+Note that for $m=0$, the budget constraint of generation $0$ is ${c}_1^0  \leq w_2$ in the sequential equilibrium and $p_1{c}_1^0  \leq p_1w_2$ in the Arrow-Debreu equilibrium.
+
+Since $\log(\cdot)$ is strictly increasing, we have ${c}_1^0 =w_2$ in both cases.
+
+Using the market clearing property, we have
+\begin{align*}
+\hat{c}_1^{0}+ \hat{c}_{1}^t & = e_1^{0}+e_1^1 \\
+\hat{c}_{1}^1 & = e_1^1 =w_1
+\end{align*}
+
+Hence, we can do this recursively and get that $c_{t}^t=w_1$ and $c_{t+1}^t=w_2$, i.e. autarky.
+
+\item
+An allocation ${c}_1^0$, $\cbra{{c}_t^t, {c}_{t+1}^t}_{t=1}^\infty$ is Pareto optimal if it is feasible and if there is no other feasible allocation $\hat{c}_1^0$, $\cbra{\hat{c}_t^t, \hat{c}_{t+1}^t}_{t=1}^\infty$
+\begin{align*}
+	u_t(\hat{c}_t^t, \hat{c}_{t+1}^t)\geq u_t({c}_t^t, {c}_{t+1}^t)\\
+	u_t(\hat{c}_1^0)\geq u_t({c}_1^0)\\
+\end{align*}
+with strict inequality for at least one $t \geq 0$.
+
+Note that the price ratio/interest rate that supports the autarky equilibrium is
+\[
+1+r_{t+1}=\frac{p_t}{p_{t+1}} = \frac{u'(w_1)}{u'(w_2)} = \frac{w_2}{w_1}>1
+\]
+
+Hence, this implies that the autarkic interest rate is smaller than $0$, i.e. Samuelson case.
+
+As shown in the notes, this implies that the autarkic equilibrium is not Pareto optimal.
+
+We can show it directly by giving $\delta_0$ to generation $0$. To offset this, we need to take from generation $1$  $\delta_0$. To offset this loss, we need to give $\delta_1$ to generation $1$ in the next period, such that
+\[
+\delta_1 u'(w_2) = \delta_0 u'(w_1) \Rightarrow \delta_1 = \delta_0 \frac{w_1}{w_2}
+\]
+If we do this recursively, we have
+\[
+\delta_t = \delta_0 \prod_{\tau=1}^{t} \frac{w_1}{w_2} = \delta_0 \left( \frac{w_1}{w_2}\right) ^t
+\]
+
+Since $\frac{w_1}{w_2}<1$, $\delta_t<\infty$ and the new $\tilde{c}^i_t$ as define previously is feasible and gives us the same utility for all generation $t\geq 1$, but strictly greater utility for generation $0$ compared to autarky. Hence, autarky is not Pareto optimal
+
+\item
+
+
+Given $m$, an Arrow-Debreu equilibrium is an allocation $\hat{c}_{1,1}^0,\hat{c}_{2,1}^0$, $\cbra{\hat{c}_{1,t}^t,\hat{c}_{2,t}^t, \hat{c}_{2,t+1}^t, \hat{c}_{2,t+1}^t}_{t=1}^\infty$ and prices $\cbra{p_{1,t},p_{2,t}}_{t=1}^\infty$ such that
+
+\begin{enumerate}[(i)]
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_{1,t}^t,\hat{c}_{2,t}^t, \hat{c}_{2,t+1}^t, \hat{c}_{2,t+1}^t)$ solves
+	\begin{align*}
+	& \max_{(\hat{c}_{1,t}^t,\hat{c}_{2,t}^t, \hat{c}_{2,t+1}^t, \hat{c}_{2,t+1}^t)} (\log{c}_{1,t}^t+\log{c}_{2,t}^t+ \log{c}_{1,t+1}^t+ \log{c}_{2,t+1}^t)\\
+	& \st \\
+ &p_{1,t}{c}_{1,t}^t +p_{2,t}{c}_{1,t}^t +p_{1,t+1}{c}_{1,t+1}^t  +p_{2,t+1}{c}_{2,t+1}^t \leq p_{1,t}w_{1,t}^t +p_{2,t}w_{2,t}^t  +p_{1,t+1}w_{1,t}^t+p_{2,t+1}w_{2,t+1}^t
+	\end{align*}
+	
+	\item Given prices, for each $t\geq 1$, $(\hat{c}_{1,1}^0,\hat{c}_{2,1}^0)$ solves
+	\begin{align*}
+	& \max_{(\hat{c}_{1,1}^0,\hat{c}_{2,1}^0)} (\log{c}_{1,1}^0+\log{c}_{2,1}^0)\\
+	& p_{1,1}{c}_{1,1}^0 +p_{2,1}{c}_{2,1}^0 \leq p_{1,1}w_{1,1}^0 +p_{2,1}w_{2,1}^0 +m
+	\end{align*}
+	
+	\item For all $t\geq 1$ and $i$ markets clear
+	\[
+	\hat{c}_{i,t}^{t-1}+ \hat{c}_{i,t}^t = w_{i,t}^{t-1}+w_{i,t}^t
+	\]
+\end{enumerate}
+
+Let $m=0$ and $c_{1,t}^t=2$, then $c_{1,t+1}^t=2$ by market clearing.
+
+Note from the generation $0$ FOCs, we have
+\begin{align*}
+	\frac{1}{c_{i,1}^0} &= \lambda p_{i,1}\\
+	\frac{c_{2,1}^0}{c_{1,1}^0} &= \frac{p_{1,1}}{p_{2,1}}\\
+ 	c_{2,1}^0&= \frac{p_{1,1}}{p_{2,1}}c_{1,1}^0
+\end{align*}
+
+Combining this to the budget constraint yields
+
+\begin{align*}
+	p_{1,1}c_{1,1}^0	+ p_{2,1}c_{2,1}^0 & = p_{1,1}w_{1,1}^0 +p_{2,1}w_{2,1}^0 \\
+	p_{1,1}c_{1,1}^0	+{p_{1,1}}c_{1,1}^0 & = 2p_{1,1} +p_{2,1} \\	
+	c_{1,1}^0 & =  1 + \frac{1}{2}\frac{p_{2,1}}{p_{1,1}} \\
+	\frac{1}{2}& = \frac{p_{1,1}}{p_{2,1}}
+\end{align*}
+
+Note from the generation $1$ FOCs, we have
+\begin{align*}
+\frac{1}{c_{i,t}^0} &= \lambda p_{i,t}\\
+\frac{c_{2,1}^1}{c_{1,1}^1} &= \frac{p_{1,1}}{p_{2,1}} \text{ and } \frac{c_{2,2}^1}{c_{1,1}^1} = \frac{p_{1,1}}{p_{2,2}}   \text{ and } \frac{c_{1,2}^1}{c_{1,1}^1} = \frac{p_{1,1}}{p_{1,2}} \\
+c_{2,1}^1&= \frac{p_{1,1}}{p_{2,1}}c_{1,1}^1 \text{ and } c_{2,2}^1= \frac{p_{1,1}}{p_{2,2}}c_{1,1}^1\text{ and } c_{1,2}^1= \frac{p_{1,1}}{p_{1,2}}c_{1,1}^1
+\end{align*}
+
+Combining this to the budget constraint yields
+
+\begin{align*}
+p_{1,1}c_{1,1}^1	+ p_{2,1}c_{2,1}^1  + p_{1,2}c_{1,2}^1	+ p_{2,2}c_{2,2}^1 & = p_{1,1}w_{1,1}^1	+ p_{2,1}w_{2,1}^1  + p_{1,2}w_{1,2}^1	+ p_{2,2}w_{2,2}^1 \\
+4p_{1,1}c_{1,1}^1& = 2p_{1,1}	+ 4p_{2,1}  + 2p_{1,2}	+ p_{2,2} \\
+8p_{1,1}& =  2p_{1,1}	+ 4p_{2,1}  + 2p_{1,2}	+ p_{2,2} \\
+6& =   4\frac{p_{2,1}}{p_{1,1}}  + 2\frac{p_{1,2}}{p_{1,1}}	+ \frac{p_{2,2}}{p_{1,1}} \\
+-2& =  2\frac{p_{1,2}}{p_{1,1}}	+ \frac{p_{2,2}}{p_{1,1}}\\
+-2p_{1,1}& =  2p_{1,2}	+ p_{2,2}
+\end{align*}
+
+Thus, if $p_{1,1}\geq 0$, we need $p_{1,2}<0$ or $p_{2,2}<0$, which is a contradiction.
+
+\end{enumerate}
+
+\end{document}

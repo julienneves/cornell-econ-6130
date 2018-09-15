@@ -1,0 +1,410 @@
+% Class Notes Template
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[utf8]{inputenc}
+
+% Packages
+\usepackage[french, english]{babel}
+\usepackage{amsmath, amsthm, amssymb ,amsfonts, graphics, tikz, float, enumerate}
+
+% Title
+\title{ECON 6130 - Problem Set \# 2}
+\date{\today}
+\author{Julien Manuel Neves}
+
+% Use these for theorems, lemmas, proofs, etc.
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+% Usefuls Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\E{\mathbb{E}}
+\newcommand\R{\mathbb{R}}
+\newcommand\F{\mathcal{F}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\st{\text{ such that }}
+\newcommand\seq[1]{\{ #1 \}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\bra}[1]{\left[#1\right]}
+\newcommand{\cbra}[1]{\left\{#1\right\}}
+
+\newcommand{\pfrac}[2]{\pa{\frac{#1}{#2}}}
+\newcommand{\bfrac}[2]{\bra{\frac{#1}{#2}}}
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\pa{\mat{#1}}}
+\newcommand{\bmat}[1]{\bra{\mat{#1}}}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\subsection*{1.}
+
+In every period, we have the following aggregate endowment:
+
+\[
+e_t^1+e_t^2+e_t^3 = 3
+\]
+
+\subsection*{2.}
+
+A competitive Arrow-Debreu equilibrium is a set of prices $\seq{\hat{p}_t}_{t=0}^{\infty}$ and allocations $(\seq{\hat{c}^i_t}_{t=0}^{\infty})$ such that
+\begin{enumerate}
+	\item Given $\seq{\hat{p}_t}_{t=0}^{\infty}$, for $i = 1, 2$, $(\seq{\hat{c}^i_t}_{t=0}^{\infty})$ solves
+	\[
+	\begin{split}
+	\max_{\seq{c^i_t}_{t=0}^{\infty}} \sum_{t=0}^{\infty}\beta^t \log(c_t^i)\\
+	\st \sum_{t=0}^{\infty}\hat{p}_tc_t^i\leq \sum_{t=0}^{\infty}\hat{p}_te_t^i\\
+	c_{t}^i\geq 0 \text{ for all }t
+	\end{split}
+	\]
+	\item Market clearing
+	\[\hat{c}_t^1+\hat{c}_t^2 + \hat{c}_t^3=e_t^1+e_t^2 + e_t^3 =3 \text{ for all }t \]
+\end{enumerate}
+where $u'>0$, $u''<0$, $\lim_{c\to 0} u''(c)=\infty$, $\lim_{c\to \infty} u''(c)=0$, $0<\beta<1$.
+
+In this market structure, agents $1,2,3$ will trade with each other claims on future consumption before time starts.
+
+Since agents prefer to smooth consumption through time, they will sell some of their respective endowments in period where they have plenty for consumption in periods where they don't have any form of endowment.
+
+
+\subsection*{3.}
+
+A sequential equilibrium is a distribution of assets $\tilde{a}_{t+1}^i$ for all $i$ and $t$, allocations $(\seq{\tilde{c}^i_t}_{t=0}^{\infty})$ and pricing kernels $\tilde{Q}_t$ such that
+\begin{enumerate}
+	\item Given $\seq{\tilde{Q}_t}_{t=0}^{\infty}$, for $i = 1, 2$, $(\seq{\tilde{c}^i_t}_{t=0}^{\infty})$ solves
+	\[
+	\begin{split}
+	\max_{\seq{c^i_t, a_{t}^i}_{t=0}^{\infty}} \sum_{t=0}^{\infty}\beta^t \log(c_t^i)\\
+	\st c_t^i+ a_{t+1}^i \tilde{Q}_t \leq e_t^i + a_{t}^i \\
+	c_{t}^i\geq 0\\
+	-a_{t+1}^i\leq A_{t+1}^i
+	\end{split}
+	\]
+	\item Market clearing
+	\[\tilde{c}_t^1+\tilde{c}_t^2 + \tilde{c}_t^3=e_t^1+e_t^2 + e_t^3 =3 \text{ for all }t \] and
+	\[
+	\tilde{a}_{t+1}^1 + \tilde{a}_{t+1}^2 + \tilde{a}_{t+1}^3  = 0 \text{ for all }t
+	\]
+\end{enumerate}
+where $u'>0$, $u''<0$, $\lim_{c\to 0} u''(c)=\infty$, $\lim_{c\to \infty} u''(c)=0$, $0<\beta<1$, and 
+
+\[
+A_{t}^i = \sum_{\tau =t}^\infty \frac{\hat{p}_\tau}{\hat{p}_t} e_\tau^i
+\]
+i.e. the natural debt limit.
+
+In this market structure, agents $1,2,3$ will trade with each other by buying or selling some assets. In periods where they have a positive endowment, they will lend part of it to other agents, and in periods where they have no endowment, they will borrow. 
+
+To prevent agents from borrowing more than what they could ever repay, we define the natural debt limit as the aggregate value of future endowments. Note that the future endowments are discounted using the Arrow-Debreu prices.
+
+\subsection*{4.}
+
+The Langrangian from the Arrow-Debreu is given by
+\[
+\mathcal{L}^i = \sum_{t=0}^{\infty}\beta^t \log(c_t^i) + \lambda^i (\sum_{t=0}^{\infty}\hat{p}_te_t^i - \sum_{t=0}^{\infty}\hat{p}_tc_t^i)
+\]
+FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}^i}{\partial c_t^i} & = \beta^t \frac{1}{\hat{c}_t^i} - \lambda^i \hat{p}_t =0 \\
+\frac{\partial \mathcal{L}^i}{\partial \lambda^i} & = \sum_{t=0}^{\infty}\hat{p}_te_t^i - \sum_{t=0}^{\infty}\hat{p}_t \hat{c}_t^i =0
+\end{align*}
+We can combine these FOCs in the following way
+\[
+\boxed{\frac{\hat{p}_{t+1}}{\hat{p}_t} = \beta \frac{\hat{c}_t^i}{\hat{c}_{t+1}^i}}
+\]
+
+The Langrangian from the sequential equilibrium is given by
+\[
+\mathcal{L}^i = \sum_{t=0}^{\infty}\beta^t \log(c_t^i) + \mu_t^i (e_t^i + a_{t}^i- c_t^i-a_{t+1}^i \tilde{Q}_t ) + \nu_t^i ( A_{t+1}^i + a_{t+1}^i)
+\]
+FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}^i}{\partial c_t^i} & = \beta^t \frac{1}{\tilde{c}_t^i} - \mu_t^i  =0 \\
+\frac{\partial \mathcal{L}^i}{\partial a_{t+1}^i} & = - \mu_t^i Q_{t} + \nu_t^i + \mu_{t+1}^i =0
+\end{align*}
+We can safely assume that the natural debt limit condition does not bind, i.e. $\nu_t^i =0$. We can combine these FOCs in the following way
+\[
+\boxed{\tilde{Q}_{t} = \beta \frac{\tilde{c}_t^i}{\tilde{c}_{t+1}^i}}
+\]
+
+Hence, to have equality between $\hat{c}_t^i$ and $\tilde{c}_t^i$, we need \[\frac{\hat{p}_{t+1}}{\hat{p}_t} =  \tilde{Q}_{t}\] This in turn implies that $\mu_t^i = \lambda^i \hat{p}_t$.
+
+
+\subsection*{5.}
+
+Recall that
+\[
+\frac{\hat{p}_{t+1}}{\hat{p}_t} = \beta \frac{\hat{c}_t^i}{\hat{c}_{t+1}^i}
+\]
+
+We can sum over all three agents, use the market clearing conditions, and get the following
+\begin{align*}
+	\sum_i \hat{p}_{t+1}\hat{c}_{t+1}^i & = \sum_i  \beta \hat{p}_t \hat{c}_t^i \\
+	\hat{p}_{t+1} \sum_i \hat{c}_{t+1}^i & =  \beta \hat{p}_t \sum_i  \hat{c}_t^i\\
+	\hat{p}_{t+1} \sum_i e_{t+1}^i & =  \beta \hat{p}_t \sum_i  e_t^i\\
+	\hat{p}_{t+1} \cdot 3 & =  \beta \hat{p}_t \cdot 3\\
+	\Rightarrow \hat{p}_{t}  & =  \beta^t \hat{p}_0
+\end{align*}
+
+If we normalize with $\hat{p}_0=1$, we have $ \hat{p}_{t}  =  \beta^t$. We can combine these prices with the budget constraints and get
+\begin{align*}
+	\sum_{t=0}^{\infty}\beta^t\hat{c}_t^1  & = \sum_{t=0}^{\infty}\beta^t e_t^1 = 3\sum_{t=0}^{\infty}\beta^{3t}\\
+	\Rightarrow \frac{1}{1-\beta} \hat{c}_t^1 &  = \frac{1}{1-\beta^3} \Rightarrow \hat{c}_t^1 = \frac{3}{1+\beta +\beta^2}\\
+	\sum_{t=0}^{\infty}\beta^t\hat{c}_t^2  & = \sum_{t=0}^{\infty}\beta^t e_t^2 = 3\beta \sum_{t=0}^{\infty}\beta^{3t}\\
+	\Rightarrow \frac{1}{1-\beta} \hat{c}_t^2 &  = \frac{3\beta}{1-\beta^3} \Rightarrow \hat{c}_t^2 = \frac{3\beta}{1+\beta +\beta^2}\\
+	\sum_{t=0}^{\infty}\beta^t\hat{c}_t^3  & = \sum_{t=0}^{\infty}\beta^t e_t^3 = 3\beta^2 \sum_{t=0}^{\infty}\beta^{3t}\\
+	\Rightarrow \frac{1}{1-\beta} \hat{c}_t^3 &  = \frac{3\beta^2}{1-\beta^3} \Rightarrow \hat{c}_t^3 = \frac{3\beta^2}{1+\beta +\beta^2}
+\end{align*}
+\subsection*{6.}
+
+Note that if the agents can't trade, in periods with $0$ endowment, the agents will have utility equal to $-\infty$. With trading, agents have constant consumption which provides positive utility in every period. Therefore, agents are better off with trading.
+
+It is straightforward to see that this should hold, as any agent would prefer consuming the same thing forever than starving $\frac{2}{3}$ of the time. In fact, if agents preferred this consuming their endowments every periods, they would simply not trade even when if given the opportunity.
+
+\subsection*{7.}
+
+Note that
+\begin{align}
+	\frac{\partial \hat{c}_t^i}{\partial t}=0
+\end{align}
+i.e. the consumption are constant
+
+We can graph $\hat{c}_t^i$ and $\hat{p}_t$ in the following way
+
+\begin{tikzpicture}[scale =2]
+	\draw[->] (-.5,0)--(5,0) node[below] {$t$};
+	\draw[->] (0,-.5)--(0,3) node[left] {$c_t,p_t$};
+	
+	\draw[thick] (0,2)--(5,2) node[above] {$\hat{c}^1_t$};
+	\draw[thick] (0,1.5)--(5,1.5) node[above] {$\hat{c}^2_t$};
+	\draw[thick] (0,9/8)--(5,9/8) node[above] {$\hat{c}^3_t$};
+	\draw[thick, domain = 0:5]  plot(\x,{(.75)^(\x)}) node[above] {$\hat{p}_t$};
+\end{tikzpicture}
+
+Note that 
+\begin{align*}
+	u(\hat{c}_t^1) = \sum_{t=0}^{\infty}\beta^t (\log(3)-\log(1+\beta+\beta^2)) \\
+	u(\hat{c}_t^2) = \sum_{t=0}^{\infty}\beta^t (\log(3)+\log(\beta)-\log(1+\beta+\beta^2))\\
+	u(\hat{c}_t^3) = \sum_{t=0}^{\infty}\beta^t (\log(3)+2\log(\beta)-\log(1+\beta+\beta^2))
+\end{align*}
+
+and, since $\beta \in (0,1) \Rightarrow \log(\beta)<0$, 
+\[
+	u(\hat{c}_t^1)<u(\hat{c}_t^2)<u(\hat{c}_t^3)
+\]
+
+This comes from the fact that agents don't receive their respective endowments at the same time. Agents prefers consumption today, rather than tomorrow. Hence, agents that receive endowments in earlier periods, are compensate more heavily for the this reason.
+
+\subsection*{8.}
+
+Let $d_t = 0.05$,
+\[
+V(d)=\sum_{t=0}^{\infty} \hat{p}_t d_t = \sum_{t=0}^{\infty} (\beta^t \cdot 0.05) = \frac{0.05}{1-\beta}
+\]
+
+\subsection*{9.}
+
+Social planner problem:
+	\[
+\begin{split}
+\max_{c^1,c^2,c^3} \lambda_1 u(c^1) +\lambda_2 u(c^2) + (1-\lambda_1 -\lambda_2) u(c^3) \\
+\st c_t^1+c_t^2+c_t^3=e_t^1+e_t^2+e_t^3\\
+c_{t}^i\geq 0 \text{ for all }t
+\end{split}
+\]
+
+\subsection*{10.}
+
+The Langrangian from the social planner problem is given by
+\[
+\mathcal{L}^i = \sum_{t=0}^{\infty}\beta^t(\lambda_1 \log(c_t^1) +\lambda_2 \log(c_t^2) + (1-\lambda_1 -\lambda_2) \log(c_t^3)) + \frac{\theta_t}{3} (e_t^1+e_t^2+e_t^3 - c_t^1-c_t^2-c_t^3)
+\]
+FOCs:
+\begin{align*}
+\frac{\partial \mathcal{L}^i}{\partial c_t^1} & = \beta^t \frac{\lambda_1}{c_t^1} - \frac{\theta_t}{3}  =0 \\
+\frac{\partial \mathcal{L}^i}{\partial c_t^2} & = \beta^t \frac{\lambda_2}{c_t^2} - \frac{\theta_t}{3}  =0 \\
+\frac{\partial \mathcal{L}^i}{\partial c_t^3} & = \beta^t \frac{(1-\lambda_1 -\lambda_2)}{c_t^3} - \frac{\theta_t}{3}  =0 \\
+\frac{\partial \mathcal{L}^i}{\partial\theta_t } & = e_t^1+e_t^2+e_t^3 - c_t^1-c_t^2-c_t^3 =0
+\end{align*}
+
+We can combined the FOCs in the following way
+\begin{align*}
+c_t^1 &= c_t^1 \\
+c_t^2 &= \frac{\lambda_2}{\lambda_1}c_t^1 \\
+c_t^3 &= \frac{(1-\lambda_1 -\lambda_2)}{\lambda_1}c_t^1
+\end{align*}
+and 
+\begin{align*}
+	c_t^1+c_t^2+c_t^3 & = e_t^1+e_t^2+e_t^3 =3\\
+	c_t^1 + \frac{\lambda_2}{\lambda_1}c_t^1 +\frac{(1-\lambda_1 -\lambda_2)}{\lambda_1}c_t^1 & =3\\
+	c_t^1 \left( 1+ \frac{\lambda_2}{\lambda_1} +\frac{(1-\lambda_1 -\lambda_2)}{\lambda_1}\right)  & =3\\
+	\frac{c_t^1 }{\lambda_1} & = 3\\
+	\Rightarrow  c_t^1 & = 3\lambda_1\\
+	\Rightarrow c_t^2 & = 3\lambda_2 \\
+	\Rightarrow  c_t^3  &= 3(1-\lambda_1 -\lambda_2)
+	\Rightarrow \theta_t = \beta^t
+\end{align*}
+
+If we let,
+\begin{align*}
+	\lambda_1 &= \frac{1}{1+\beta+\beta^2}\\
+	\lambda_2 &= \frac{\beta}{1+\beta+\beta^2}
+\end{align*}
+then we get the same equilibrium as the competitive one.
+
+\subsection*{11.}
+
+In this situation
+\[
+e_t^1+e_t^2+e_t^3 = \left\lbrace \mat{3 & \text{if }t=\cbra{0,3,6,...}\\ 4 & \text{otherwise}}\right. 
+\]
+
+Since aggregate endowment is not constant, aggregate consumption will not be constant due to the market clearing condition. If aggregate consumption is not constant, at least one agent has time varying consumption.
+\section*{Problem 2}
+\subsection*{1.}
+
+Let 
+\[
+\Gamma(c)=\cbra{(c^1,c^2)\mid c^1\geq 0, c^2\geq 0, c^1+c^2\leq c}
+\]
+and
+\[
+\bar{v}_{\theta}(c^1,c^2)= \theta u(c^1)+(1-\theta)w(c^2)
+\]
+
+It is straightforward to see that $\Gamma(c)$ is closed and bounded. Then, since $\bar{v}_{\theta}(c^1,c^2)$ is continuous, it must attain a maximum on $\Gamma(c)$ by the extreme value theorem. Let's denote this maximum by $x^*(c)$ (note that it is a function of $c$). Let $c,c'\in \R_+$ and $\alpha \in [0,1]$, then
+
+\begin{align*}
+	\alpha v_{\theta}(c) + (1-\alpha ) v_{\theta}(c') & = \alpha \bar{v}_{\theta}(x^*(c)) + (1-\alpha ) \bar{v}_{\theta}(x^*(c'))
+\end{align*}
+
+Since $\bar{v}_{\theta}$ is the convex combination of two concave functions, $\bar{v}_{\theta}$ is also concave and
+\begin{align*}
+\alpha \bar{v}_{\theta}(x^*(c)) + (1-\alpha ) \bar{v}_{\theta}(x^*(c')) & \leq  \bar{v}_{\theta}(\alpha x^*(c) + (1-\alpha) x^*(c')) 
+\end{align*}
+
+Note that $\alpha x^*(c) + (1-\alpha) x^*(c') \in \Gamma(\alpha c + (1-\alpha)c')$, hence there must exists $x^*(\alpha c + (1-\alpha)c')$ such that
+\begin{align*}
+\bar{v}_{\theta}(\alpha x^*(c) + (1-\alpha) x^*(c')) & \leq  \bar{v}_{\theta}(x^*(\alpha c + (1-\alpha)c'))\\
+& =v_{\theta}(\alpha c + (1-\alpha) c')
+\end{align*}
+
+Combining these inequalities, we get for all  $c,c'\in \R_+$ and $\alpha \in [0,1]$,
+\begin{align*}
+\alpha v_{\theta}(c) + (1-\alpha ) v_{\theta}(c')& \leq  v_{\theta}(\alpha c + (1-\alpha) c')
+\end{align*}
+i.e. $v_{\theta}(c)$ is concave.
+\subsection*{2.}
+
+The Langrangian of the social planner problem is
+\[
+\mathcal{L} = \theta u(c^1)+(1-\theta)w(c^2) +\lambda ( c-c^1-c^2)
+\]
+
+FOCs:
+\begin{align*}
+	\frac{\partial \mathcal{L}}{\partial c^1} &= \theta u'(c^1) - \lambda =0\\
+	\frac{\partial \mathcal{L}}{\partial c^2} &= (1-\theta) w'(c^2) - \lambda =0\\
+	\frac{\partial \mathcal{L}}{\partial \lambda} &=  c-c^1-c^2  =0
+\end{align*}
+
+By envelope theorem,
+\[
+\frac{\partial v_\theta(c)}{\partial c} = \frac{\partial \mathcal{L}}{\partial c} = \lambda
+\]
+
+Combining this we the FOCs yields
+
+\begin{align*}
+\frac{\partial v_\theta(c)}{\partial c} &= \theta u'(c^1) = (1-\theta) w'(c^1)
+\end{align*}
+
+\section*{Problem 3}
+\subsection*{1.}
+
+Let
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^1 \leq \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^1
+\]
+
+Since $\hat{c}_t^1$ is an Arrow-Debreu allocation, it must be feasible, i.e.
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^1 \leq \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^1
+\]
+
+In turn, this implies 
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^1 \leq \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^1
+\]
+i.e. $\tilde{c}_t^1$ is a feasible allocation.
+
+Then $\tilde{c}_t^1$ is a feasible allocation, and it provides strictly greater utility. This contradicts $\hat{c}_t^1$ being an equilibrium since the agent would be better off by choosing $\tilde{c}_t^1$ instead.
+
+Therefore,
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^1 > \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^1
+\]
+
+\subsection*{2.}
+
+Let
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^i < \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^i
+\]
+
+Since $\hat{c}_t^1$ is an Arrow-Debreu allocation, it must be feasible, i.e.
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^i \leq \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^i
+\]
+
+In turn, this implies 
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^i < \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^i
+\]
+
+Then, $\exists \epsilon>0$ such that 
+\begin{align*}
+	\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^i  + \epsilon & < \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^i\\
+	\sum_{t=0}^{\infty} \hat{p}_t \bar{c}_t^i   & < \sum_{t=0}^{\infty} \hat{p}_t \hat{y}_t^i
+\end{align*}
+where $\bar{c}^i = \cbra{\tilde{c}_0 + \frac{\epsilon}{\hat{p}_0}, \tilde{c}_1, \dots}$.
+
+If $U(\cdot)$ is strictly increasing, we have
+\[
+U(\bar{c}^i)>U(\tilde{c}^i)\geq U(\hat{c}^i) 
+\]
+
+Then $\bar{c}_t^1$ is a feasible allocation, and it provides strictly greater utility. This contradicts $\hat{c}_t^1$ being an equilibrium since the agent would be better off by choosing $\bar{c}_t^1$ instead.
+
+Therefore,
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^i \geq \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^i
+\]
+\subsection*{3.}
+
+Since,
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^1 > \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^1
+\]
+and
+\[
+\sum_{t=0}^{\infty} \hat{p}_t \tilde{c}_t^i \geq \sum_{t=0}^{\infty} \hat{p}_t \hat{c}_t^i
+\]
+
+Then $\tilde{c}_t^1$ is not feasible, by definition, which is a contradiction.
+
+\end{document}
